@@ -4,6 +4,9 @@ const elements = {
   promptContent: document.getElementById("prompt-content"),
   titleWrapper: document.getElementById("title-wrapper"),
   contentWrapper: document.getElementById("content-wrapper"),
+  btnOpen: document.getElementById("btn-open"),
+  btnCollapse: document.getElementById("btn-collapse"),
+  sidebar: document.querySelector(".sidebar"),
 }
 
 // Atualiza o estado da classe is-empty no wrapper conforme o conteúdo do elemento
@@ -29,10 +32,25 @@ function attachAllEditableHandlers() {
   })
 }
 
-// Função de inicialização
+function openSideBar() {
+  elements.sidebar.style.display = "flex"
+  elements.btnOpen.style.display = "none"
+}
+
+function closeSideBar() {
+  elements.sidebar.style.display = "none"
+  elements.btnOpen.style.display = "block"
+}
+
 function init() {
   attachAllEditableHandlers()
   updateAllEditableStates()
+
+  elements.btnOpen.addEventListener("click", openSideBar)
+  elements.btnCollapse.addEventListener("click", closeSideBar)
+  // Estado inicial: sidebar visível, btnOpen oculto
+  elements.sidebar.style.display = "flex"
+  elements.btnOpen.style.display = "none"
 }
 
 // Executa a inicialização
